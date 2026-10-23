@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#ff9b43" />
+<title>生命靈數計算機｜非主劉</title>
+<style>
+:root{color-scheme:light;--bg:#ffb05d;--card:#fffaf4;--line:#f2cfaf;--text:#4d2b1e;--muted:#815e4c;--accent:#ec640f;--accent2:#9b350b}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:radial-gradient(circle at 8% 10%,#ffe3a8 0,transparent 36%),radial-gradient(circle at 92% 85%,#f9732c 0,transparent 46%),linear-gradient(135deg,#ffd08a 0%,#ff9a49 55%,#ffae72 100%);font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Microsoft JhengHei",sans-serif;color:var(--text);display:flex;align-items:center;justify-content:center;padding:32px 16px}
+.shell{width:min(100%,580px)}.eyebrow{text-align:center;letter-spacing:.24em;font-size:12px;font-weight:800;color:#83310e;margin-bottom:12px}
+h1{text-align:center;font-size:clamp(32px,7vw,46px);letter-spacing:-.04em;margin:0 0 10px;color:#652a13}.intro{text-align:center;color:#713f26;line-height:1.8;margin:0 0 25px}
+.card{background:rgba(255,251,245,.97);border:1px solid #fff2df;padding:clamp(22px,5vw,34px);border-radius:24px;box-shadow:0 24px 60px #a9432440}
+.field-label{display:block;font-size:15px;font-weight:700;margin-bottom:10px}
+.date{width:100%;border:1px solid #e5bb98;background:#fff;border-radius:14px;color:var(--text);font:inherit;font-size:18px;padding:16px;min-height:58px;color-scheme:light}
+button{font:inherit}.calculate{width:100%;border:0;background:linear-gradient(110deg,#fb8730,#e45c0d);color:#fff;font-weight:800;border-radius:14px;padding:17px;margin-top:16px;cursor:pointer;font-size:16px;box-shadow:0 7px 18px #d9682945}.calculate:hover{filter:brightness(1.05)}.calculate:focus-visible,.date:focus-visible{outline:3px solid #bc4b08;outline-offset:3px}
+.error{color:#aa241b;font-size:14px;margin-top:10px;min-height:0}
+.result{margin-top:25px;padding:26px 16px;border-radius:18px;border:1px solid #f1c99d;background:linear-gradient(130deg,#fff2d9,#ffe3c0);text-align:center}.result[hidden]{display:none}
+.small-label{font-size:14px;color:#80502f}.number{font-size:clamp(80px,22vw,126px);font-weight:850;line-height:1.12;letter-spacing:-.07em;color:#cf510b}.type{font-size:16px;color:#963907;font-weight:700;margin-top:4px}
+.meaning{margin-top:20px;text-align:left;background:#fffdf9;border:1px solid #efc59f;border-radius:15px;padding:20px}.meaning h2{font-size:19px;margin:0 0 8px;color:#a9430c}.tags{font-size:13px;color:#a9430c;font-weight:800;letter-spacing:.04em;margin-bottom:12px}.meaning p{line-height:1.85;font-size:15px;margin:9px 0;color:#62402c}.meaning strong{color:#73361b}.question{margin-top:13px;border-left:3px solid #e87b35;padding-left:12px;font-size:14px;line-height:1.7;color:#79452b}.sources{margin-top:17px;font-size:12px;line-height:1.9;color:#745846}.steps{margin-top:22px;padding:18px;text-align:left;background:#fffaf3;border:1px solid #f6dbc0;border-radius:12px}.steps strong{font-size:14px}.steps p{margin:10px 0 0;line-height:1.85;color:#69422d;overflow-wrap:anywhere}
+.foot{color:var(--muted);font-size:13px;line-height:1.85;margin:18px 0 0}.footer{text-align:center;color:#773c20;font-size:12px;margin-top:20px}a{color:var(--accent2)}
+</style>
+</head>
+<body><main class="shell"><div class="eyebrow">非主劉 PODCAST</div><h1>生命靈數計算機</h1><p class="intro">輸入你的西元出生年月日，看看你的生命靈數是多少。<br>包含 11、22、33 大師數字。</p>
+<section class="card" aria-label="生命靈數計算"><label class="field-label" for="birthdate">你的出生日期</label><input class="date" type="date" id="birthdate" min="1900-01-01" max="2100-12-31" required /><button class="calculate" id="calc" type="button">計算我的生命靈數 →</button><div class="error" id="error" role="alert"></div><section class="result" id="result" hidden aria-live="polite"><div class="small-label">你的生命靈數是</div><div class="number" id="num">4</div><div class="type" id="type">生命靈數</div><div class="meaning" id="meaning"><h2 id="meaning-title"></h2><div class="tags" id="keywords"></div><p id="strength"></p><p id="challenge"></p><div class="question" id="prompt"></div></div><div class="steps"><strong>計算過程</strong><p id="process"></p></div></section><p class="sources">解讀參考：<a href="https://www.numerology.com/articles/your-numerology-chart/life-path-number-meanings/" target="_blank" rel="noopener noreferrer">Numerology.com｜Life Path Number Meanings</a>、<a href="https://www.numerology.com/articles/about-numerology/master-numbers/" target="_blank" rel="noopener noreferrer">Master Numbers</a>。文字為中文摘要改寫，非科學人格評估。</p><p class="foot">計算規則：將出生年月日的所有數字加總，再逐位相加；遇到 1～9 或 11、22、33 時停止。<br>生命靈數源於數字命理，僅供趣味交流，並非科學人格測驗。不同流派的算法可能不同。</p></section><div class="footer">© 非主劉 · Life Path Number Calculator</div></main>
+<script>
+(()=>{'use strict';const date=document.getElementById('birthdate'),result=document.getElementById('result'),num=document.getElementById('num'),type=document.getElementById('type'),process=document.getElementById('process'),error=document.getElementById('error');const meanings={
+1:{title:'1 號｜開創者',keys:'獨立・行動・領導',strength:'傾向主動開創新局，喜歡自己做決定，也願意率先嘗試。',challenge:'有時可能太在意自主與成果，忽略他人的步調或建議。',prompt:'聊聊看：你比較喜歡帶頭做事，還是與人合作？'},
+2:{title:'2 號｜協調者',keys:'同理・合作・敏感',strength:'重視互動與關係，擅長留意他人的感受，傾向透過合作找出共識。',challenge:'有時可能為了維持和諧而壓抑自己的需求，或猶豫不決。',prompt:'聊聊看：遇到意見衝突時，你通常怎麼處理？'},
+3:{title:'3 號｜表達者',keys:'創意・溝通・樂觀',strength:'喜歡表達想法，對創作、交流與新鮮的點子抱有熱情。',challenge:'可能因興趣太多而分散注意力，也需要練習把靈感落實。',prompt:'聊聊看：你最享受用什麼方式表達自己？'},
+4:{title:'4 號｜實踐者',keys:'務實・穩定・紀律',strength:'重視秩序、可靠與長期累積，習慣用具體計畫把事情做好。',challenge:'有時可能太堅持規則或既定安排，不容易接受突如其來的變化。',prompt:'聊聊看：你是喜歡先規劃，還是邊做邊調整的人？'},
+5:{title:'5 號｜探索者',keys:'自由・變化・冒險',strength:'充滿好奇心，喜歡體驗不同的人事物，通常能快速適應新環境。',challenge:'容易厭倦重複與限制，可能需要練習維持承諾與節奏。',prompt:'聊聊看：最近一次讓你覺得「很自由」的經驗是什麼？'},
+6:{title:'6 號｜照顧者',keys:'責任・關懷・和諧',strength:'關心身邊的人，重視家庭、朋友及群體間的支持與平衡。',challenge:'可能承擔太多責任，或在照顧別人時忘記自己的界線。',prompt:'聊聊看：你習慣先照顧自己，還是先顧及別人的需要？'},
+7:{title:'7 號｜思考者',keys:'分析・探索・內省',strength:'喜歡深度思考、研究與理解事物背後的原因，也珍惜獨處時間。',challenge:'有時可能想得太多，或不容易向別人敞開自己的感受。',prompt:'聊聊看：你做重要決定時，會依靠直覺還是資料？'},
+8:{title:'8 號｜成就者',keys:'企圖・管理・成果',strength:'重視目標與執行力，擅長整合資源並推動事情產生實際成果。',challenge:'可能過度關注表現或控制感，而忽略過程中的關係與休息。',prompt:'聊聊看：對你而言，什麼才算是真正的成功？'},
+9:{title:'9 號｜理想者',keys:'同理・理想・分享',strength:'對他人與社會抱有關懷，喜歡從更大的角度看事情，重視意義感。',challenge:'可能因期待過高而失望，也需要學習區分理想與自身能負擔的責任。',prompt:'聊聊看：你最希望自己能為別人帶來什麼影響？'},
+11:{title:'11 號｜啟發者（大師數字）',keys:'直覺・敏銳・啟發',strength:'在數字命理中，11 象徵強烈直覺與敏感度，重視理解感受、傳達想法與啟發他人。',challenge:'可能容易受到情緒或環境影響，需要找到安定自己的方法。',prompt:'聊聊看：你做判斷時，會不會很相信自己的直覺？'},
+22:{title:'22 號｜建設者（大師數字）',keys:'願景・組織・落實',strength:'在數字命理中，22 象徵把遠大構想化為現實的能力，兼顧理想與執行。',challenge:'可能容易對自己要求太高，或感受到必須完成大事的壓力。',prompt:'聊聊看：有沒有一件你一直想完成的長期計畫？'},
+33:{title:'33 號｜引導者（大師數字）',keys:'關愛・教導・服務',strength:'在數字命理中，33 象徵以關懷、分享及教導幫助他人，重視群體福祉。',challenge:'可能把他人的需要放得太前面，需學習健康的付出與界線。',prompt:'聊聊看：你最喜歡用什麼方式支持身邊的人？'}
+};const sumDigits=n=>String(n).split('').reduce((a,b)=>a+Number(b),0);function calculate(){error.textContent='';result.hidden=true;const v=date.value;if(!/^\d{4}-\d{2}-\d{2}$/.test(v)){error.textContent='請先選擇有效的出生日期。';return;}const [y,m,d]=v.split('-').map(Number),check=new Date(Date.UTC(y,m-1,d));if(check.getUTCFullYear()!==y||check.getUTCMonth()!==m-1||check.getUTCDate()!==d){error.textContent='這不是有效的日期，請重新選擇。';return;}const digits=v.replace(/\D/g,'').split('').map(Number);let total=digits.reduce((a,b)=>a+b,0);const lines=[digits.join(' + ')+' = '+total];while(total>9&&![11,22,33].includes(total)){const next=sumDigits(total);lines.push(String(total).split('').join(' + ')+' = '+next);total=next;}const meaning=meanings[total];document.getElementById('meaning-title').textContent=meaning.title;document.getElementById('keywords').textContent=meaning.keys;document.getElementById('strength').textContent='常見特質｜'+meaning.strength;document.getElementById('challenge').textContent='可能的挑戰｜'+meaning.challenge;document.getElementById('prompt').textContent=meaning.prompt;num.textContent=String(total);type.textContent=[11,22,33].includes(total)?'大師數字 · Master Number':'生命靈數 · Life Path Number';process.textContent=lines.join(' → ');result.hidden=false;}document.getElementById('calc').addEventListener('click',calculate);date.addEventListener('keydown',e=>{if(e.key==='Enter')calculate()});})();
+</script></body></html>
